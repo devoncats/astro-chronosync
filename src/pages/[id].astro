@@ -1,0 +1,55 @@
+---
+import MeetingCard from "@/components/MeetingCard.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+const { id } = Astro.params;
+
+interface User {
+  id: string
+  name: string
+  greeting: string
+  meetings: {
+    name: string
+    description: string
+    duration: string
+  }[];
+}
+
+const res = await fetch(`http://localhost:3000/api/users/${id}`);
+
+if (res.status === 404) {
+  return Astro.redirect('/404')
+}
+
+const data: User = await res.json();
+
+const { name, greeting, meetings } = data;
+---
+
+<Layout title={`Chronosync - ${name}`}>
+  <main
+    class="w-screen h-screen flex items-center justify-center bg-gray-50 font-sans"
+  >
+    <article class="border px-32 py-8 rounded shadow-sm bg-white">
+      <section class="flex flex-col gap-8 items-center">
+        <Image
+          class="rounded-full size-16"
+          src={`http://localhost:3000/images/${id}.jpg`}
+          alt="image"
+          width={460}
+          height={460}
+        />
+        <div class="flex flex-col gap-4 items-center">
+          <h1 class="font-semibold text-gray-800">{name}</h1>
+          <p class="w-64 text-center text-xs text-gray-600">{greeting}</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-32 gap-y-16 mt-8 h-96">
+          {meetings.map((meeting) => <MeetingCard id={data.id} {...meeting} />)}
+        </div>
+      </section>
+    </article>
+  </main>
+</Layout>
+
