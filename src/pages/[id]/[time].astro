@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 
 import { Image } from "astro:assets";
+
 import SelectMeeting from "@/components/SelectMeeting.tsx";
 import SelectTimeZone from "@/components/SelectTimeZone.tsx";
 
@@ -9,20 +10,7 @@ import CaretRightIcon from "@/icons/caret-right.astro";
 import ClockIcon from "@/icons/clock.astro";
 import PersonIcon from "@/icons/person.astro";
 
-
-
 const { id, time } = Astro.params;
-
-interface User {
-  id: string;
-  name: string;
-  greeting: string;
-  meetings: {
-    name: string;
-    description: string;
-    duration: string;
-  }[];
-}
 
 const res = await fetch(`http://localhost:3000/api/users/${id}`);
 
@@ -39,8 +27,6 @@ const meeting = meetings.find((meeting) => meeting.duration === time);
 if (!meeting) {
   return Astro.redirect("/404");
 }
-
-console.log(meeting);
 ---
 
 <Layout title={`Chronosync - ${name}`}>
@@ -64,7 +50,7 @@ console.log(meeting);
             height={460}
           />
           <div class="flex flex-col">
-            <h1 class="text-sm text-gray-800">{name}</h1>
+            <h1 class="text-sm text-gray-400">{name}</h1>
             <p class="w-64 text-lg font-medium">{meeting.name}</p>
           </div>
           <div class="text-gray-600 flex flex-col gap-4 mt-12">

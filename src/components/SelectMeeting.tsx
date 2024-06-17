@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useStore } from "@nanostores/react";
 
 import { Calendar } from "@nextui-org/react";
-import { today, getLocalTimeZone } from "@internationalized/date";
+import { today, parseDate } from "@internationalized/date";
 import type { DateValue } from "@nextui-org/react";
 import { timezone } from "@/stores/timezone";
 
