@@ -1,86 +1,105 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Layout from '@/layouts/Layout.astro'
 
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets'
 
-import SelectMeeting from "@/components/SelectMeeting.tsx";
-import SelectTimeZone from "@/components/SelectTimeZone.tsx";
+import SelectMeeting from '@/components/time/SelectMeetingDate'
+import SelectTimeZone from '@/components/time/SelectTimeZone'
 
-import CaretRightIcon from "@/icons/caret-right.astro";
-import ClockIcon from "@/icons/clock.astro";
-import PersonIcon from "@/icons/person.astro";
+import CaretRightIcon from '@/icons/caret-right.astro'
+import ClockIcon from '@/icons/clock.astro'
+import PersonIcon from '@/icons/person.astro'
+import SelectMeetingTime from '@/components/time/SelectMeetingTime'
 
-const { id, time } = Astro.params;
+import { date } from '@/stores/dateStore'
 
-const res = await fetch(`http://localhost:3000/api/users/${id}`);
+const { id, time } = Astro.params
+
+const res = await fetch(`http://localhost:3000/api/users/${id}`)
 
 if (res.status === 404) {
-  return Astro.redirect("/404");
+    return Astro.redirect('/404')
 }
 
-const data: User = await res.json();
+const data: User = await res.json()
 
-const { name, greeting, meetings } = data;
+const { name, meetings, avaliability  } = data
 
-const meeting = meetings.find((meeting) => meeting.duration === time);
+const meeting = meetings.find((meeting) => meeting.duration === time)
+
+const userDate = date.get()
+const avalibleHours = avaliability.filter((hours) => hours.day === userDate.toString())
+
 
 if (!meeting) {
-  return Astro.redirect("/404");
+    return Astro.redirect('/404')
 }
 ---
 
 <Layout title={`Chronosync - ${name}`}>
-  <main
-    class="w-screen h-screen flex items-center justify-center bg-gray-50 font-sans"
-  >
-    <article class="border rounded shadow-sm w-fit bg-white flex">
-      <div class="border-r flex-1">
-        <section class="border-b px-4 py-8">
-          <div class="border w-fit rounded-full p-2">
-            <a href={`/${id}`}><CaretRightIcon /></a>
-          </div>
-        </section>
+    <main
+        class='w-screen h-screen flex items-center justify-center bg-gray-50 font-sans'
+    >
+        <article class='border rounded shadow-sm w-fit bg-white flex'>
+            <div class='border-r flex-1'>
+                <section class='border-b px-4 py-8'>
+                    <div class='border w-fit rounded-full p-2'>
+                        <a href={`/${id}`}><CaretRightIcon /></a>
+                    </div>
+                </section>
 
-        <section class="p-8 flex flex-col gap-4">
-          <Image
-            class="rounded-full size-16"
-            src={`http://localhost:3000/images/${id}.jpg`}
-            alt="image"
-            width={460}
-            height={460}
-          />
-          <div class="flex flex-col">
-            <h1 class="text-sm text-gray-400">{name}</h1>
-            <p class="w-64 text-lg font-medium">{meeting.name}</p>
-          </div>
-          <div class="text-gray-600 flex flex-col gap-4 mt-12">
-            <div class="flex items-center gap-2">
-              <ClockIcon />
-              <span class="text-xs">{meeting.duration}</span>
+                <section class='p-8 flex flex-col gap-4'>
+                    <Image
+                        class='rounded-full size-16'
+                        src={`http://localhost:3000/images/${id}.jpg`}
+                        alt='image'
+                        width={460}
+                        height={460}
+                    />
+                    <div class='flex flex-col'>
+                        <h1 class='text-sm text-gray-400'>{name}</h1>
+                        <p class='w-64 text-lg font-medium'>{meeting.name}</p>
+                    </div>
+                    <div class='text-gray-600 flex flex-col gap-4 mt-12'>
+                        <div class='flex items-center gap-2'>
+                            <ClockIcon />
+                            <span class='text-xs'>{meeting.duration}</span>
+                        </div>
+
+                        <div class='flex gap-2'>
+                            <PersonIcon />
+                            <span class='text-xs w-96 text-balance'
+                                >{meeting.description}</span
+                            >
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class='p-8 mt-24'>
+                        <a
+                            href='/'
+                            class='text-blue-600 text-xs'
+                            >Report abuse</a
+                        >
+                    </div>
+                </section>
             </div>
 
-            <div class="flex gap-2">
-              <PersonIcon />
-              <span class="text-xs w-96 text-balance"
-                >{meeting.description}</span
-              >
-            </div>
-          </div>
-        </section>
+            <section class='flex p-8 gap-12'>
+                <div class='flex'>
+                    <section class='flex flex-col gap-4'>
+                        <SelectMeeting client:load />
+                        <SelectTimeZone client:load />
+                    </section>
+                </div>
 
-        <section>
-          <div class="p-8 mt-24">
-            <a href="/" class="text-blue-600 text-xs">Report abuse</a>
-          </div>
-        </section>
-      </div>
-
-      <div class="flex p-8">
-        <section class="flex flex-col gap-4">
-          <SelectMeeting client:load />
-          <SelectTimeZone client:load />
-        </section>
-      </div>
-    </article>
-  </main>
+                <div class='flex flex-col gap-4 mt-11'>
+                    <div class='border rounded bg-white px-4 py-2'>
+                        <SelectMeetingTime client:load />
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
 </Layout>

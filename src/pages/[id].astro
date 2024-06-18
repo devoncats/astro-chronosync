@@ -1,37 +1,47 @@
 ---
-import MeetingCard from "@/components/id/MeetingCard.astro";
-import Layout from "@/layouts/Layout.astro";
-import UserCard from "@/components/id/UserCard.astro";
+import MeetingCard from '@/components/id/MeetingCard.astro'
+import Layout from '@/layouts/Layout.astro'
+import UserCard from '@/components/id/UserCard.astro'
 
-const { id } = Astro.params;
+const { id } = Astro.params
 
-const res = await fetch(`http://localhost:3000/api/users/${id}`);
+const res = await fetch(`http://localhost:3000/api/users/${id}`)
 
 if (res.status === 404) {
-  return Astro.redirect('/404')
+    return Astro.redirect('/404')
 }
 
-const data: User = await res.json();
+const data: User = await res.json()
 
-const { name, greeting, meetings } = data;
-const userId: string = data.id;
+const { name, greeting, meetings } = data
+const userId: string = data.id
 ---
 
 <Layout title={`Chronosync - ${name}`}>
-  <main
-    class="w-screen min-h-screen flex items-center justify-center py-12 bg-gray-50 font-sans"
-  >
-    <article class="border px-32 py-8 rounded shadow-sm bg-white">
-      <div class="flex flex-col gap-16">
-        <UserCard id={userId} name={name} greeting={greeting} />
+    <main
+        class='w-screen min-h-screen flex items-center justify-center py-12 bg-gray-50 font-sans'
+    >
+        <article class='border px-32 py-8 rounded shadow-sm bg-white'>
+            <div class='flex flex-col gap-16'>
+                <UserCard
+                    id={userId}
+                    name={name}
+                    greeting={greeting}
+                />
 
-        <section class="grid grid-cols-2 gap-x-32 gap-y-16 h-96 text-ellipsis">
-          {meetings.map((meeting) => <MeetingCard id={data.id} {...meeting} />)}
-        </section>
-      </div>
-    </article>
-
-    
-  </main>
+                <section
+                    class='grid grid-cols-2 gap-x-32 gap-y-16 h-96 text-ellipsis'
+                >
+                    {
+                        meetings.map((meeting) => (
+                            <MeetingCard
+                                id={data.id}
+                                {...meeting}
+                            />
+                        ))
+                    }
+                </section>
+            </div>
+        </article>
+    </main>
 </Layout>
-
