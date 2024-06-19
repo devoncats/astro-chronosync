@@ -11,8 +11,6 @@ import ClockIcon from '@/icons/clock.astro'
 import PersonIcon from '@/icons/person.astro'
 import SelectMeetingTime from '@/components/time/SelectMeetingTime'
 
-import { date } from '@/stores/dateStore'
-
 const { id, time } = Astro.params
 
 const res = await fetch(`http://localhost:3000/api/users/${id}`)
@@ -23,13 +21,9 @@ if (res.status === 404) {
 
 const data: User = await res.json()
 
-const { name, meetings, avaliability  } = data
+const { name, meetings, avaliability } = data
 
 const meeting = meetings.find((meeting) => meeting.duration === time)
-
-const userDate = date.get()
-const avalibleHours = avaliability.filter((hours) => hours.day === userDate.toString())
-
 
 if (!meeting) {
     return Astro.redirect('/404')
@@ -96,7 +90,7 @@ if (!meeting) {
 
                 <div class='flex flex-col gap-4 mt-11'>
                     <div class='border rounded bg-white px-4 py-2'>
-                        <SelectMeetingTime client:load />
+                        <SelectMeetingTime avaliability={avaliability}  client:load /> 
                     </div>
                 </div>
             </section>

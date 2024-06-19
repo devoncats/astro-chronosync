@@ -6,7 +6,7 @@ interface Meeting {
 
 interface Avaliability {
     day: string
-    hours: string
+    hours: string[]
 }
 
 interface User {
