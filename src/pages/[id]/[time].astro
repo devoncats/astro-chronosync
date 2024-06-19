@@ -21,7 +21,7 @@ if (res.status === 404) {
 
 const data: User = await res.json()
 
-const { name, meetings, avaliability } = data
+const { name, meetings, availability } = data
 
 const meeting = meetings.find((meeting) => meeting.duration === time)
 
@@ -62,9 +62,7 @@ if (!meeting) {
 
                         <div class='flex gap-2'>
                             <PersonIcon />
-                            <span class='text-xs w-96 text-balance'
-                                >{meeting.description}</span
-                            >
+                            <span class='text-xs w-96 text-balance'>{meeting.description}</span>
                         </div>
                     </div>
                 </section>
@@ -83,18 +81,17 @@ if (!meeting) {
             <section class='flex p-8 gap-12'>
                 <div class='flex'>
                     <section class='flex flex-col gap-4'>
-                        <SelectMeetingDate avaliability={avaliability} client:load />
+                        <SelectMeetingDate availability={availability} client:only="react" />
                         <SelectTimeZone client:only="react" />
                     </section>
                 </div>
 
                 <div class='flex flex-col gap-4 mt-11'>
                     <div class='border rounded-lg bg-white px-4 py-2 w-80'>
-                        <SelectMeetingTime avaliability={avaliability} client:only="react" /> 
+                        <SelectMeetingTime availability={availability} client:only="react" /> 
                     </div>
                 </div>
             </section>
         </article>
     </main>
 </Layout>
-

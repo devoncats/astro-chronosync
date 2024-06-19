@@ -4,7 +4,7 @@ interface Meeting {
     duration: string
 }
 
-interface Avaliability {
+interface Availability {
     day: string
     hours: string[]
 }
@@ -14,5 +14,5 @@ interface User {
     name: string
     greeting: string
     meetings: Meeting[]
-    avaliability: Avaliability[]
+    availability: Availability[]
 }

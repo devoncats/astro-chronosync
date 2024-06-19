@@ -4,31 +4,28 @@ import { useStore } from '@nanostores/react'
 import { Calendar, type DateValue } from '@nextui-org/react'
 import { parseDate, today } from '@internationalized/date'
 import { timezone, setDate, date } from '@/stores/dateStore'
+import { getAvailableDates, getFirstAvaliableDateFromToday, isInvalidDate } from '@/utils/dateUtils'
+import { setDateQueryParams } from '@/utils/queryUtils'
 
-export default function SelectMeeting({ avaliability }: { avaliability: Avaliability[] }) {
+export default function SelectMeetingDate({ availability }: { availability: Availability[] }) {
     const userTimezone = useStore(timezone)
     const userDate = useStore(date)
 
-    const avaliableDates = avaliability.map((date) => date.day)
-
-    const invalidDate = (date: DateValue) => {
-        return !avaliableDates.includes(date.toString())
+    const getAvailableDates = availability.map((date) => date.day)
+    
+    
+    const isInvalidDate = (availableDates: string[], date: DateValue) => {
+        return !availableDates.includes(date.toString())
     }
-
-    const firstAvaliableDateFromToday = () => {
+    
+    const getFirstAvaliableDateFromToday = () => {
         const todayDate = today(userTimezone)
-        const avaliableDate = avaliableDates.find((date) => date >= todayDate.toString())
-
+        const avaliableDate = getAvailableDates.find((date) => date >= todayDate.toString())
+    
         return avaliableDate ? parseDate(avaliableDate) : todayDate
     }
 
-    useEffect(() => {
-        const queryParams = new URLSearchParams(window.location.search)
-        const dateParam = queryParams.get('date')
-
-        dateParam ? setDate(parseDate(dateParam)) : setDate(firstAvaliableDateFromToday())
-    }, [])
-
+    setDateQueryParams(getFirstAvaliableDateFromToday())
 
     const handleSelectionChange = (event: DateValue) => {
         const newDate = event.toString()
@@ -46,10 +43,10 @@ export default function SelectMeeting({ avaliability }: { avaliability: Avaliabi
             <Calendar
                 className='shadow-none border'
                 color='secondary'
-                isDateUnavailable={invalidDate}
-                defaultValue={firstAvaliableDateFromToday()}
-                onChange={handleSelectionChange}
-                minValue={today(userTimezone)}
+                // isDateUnavailable={invalidDate}
+                // defaultValue={firstAvalibleDate}
+                // onChange={handleSelectionChange}
+                // minValue={today(userTimezone)}
             />
         </>
     )
