@@ -3,15 +3,15 @@ import Layout from '@/layouts/Layout.astro'
 
 import { Image } from 'astro:assets'
 
-import SelectMeeting from '@/components/time/SelectMeetingDate'
-import SelectTimeZone from '@/components/time/SelectTimeZone'
+import { SelectDate } from '@/components/duration/SelectDate'
+import { SelectTimezone } from '@/components/duration/SelectTimezone'
+import { SelectTime } from '@/components/duration/SelectTime'
 
 import CaretRightIcon from '@/icons/caret-right.astro'
 import ClockIcon from '@/icons/clock.astro'
 import PersonIcon from '@/icons/person.astro'
-import SelectMeetingTime from '@/components/time/SelectMeetingTime'
 
-const { id, time } = Astro.params
+const { id, duration } = Astro.params
 
 const res = await fetch(`http://localhost:3000/api/users/${id}`)
 
@@ -21,9 +21,9 @@ if (res.status === 404) {
 
 const data: User = await res.json()
 
-const { name, meetings, availability } = data
+const { name, meetings } = data
 
-const meeting = meetings.find((meeting) => meeting.duration === time)
+const meeting = meetings.find((meeting) => meeting.duration === duration)
 
 if (!meeting) {
     return Astro.redirect('/404')
@@ -78,18 +78,30 @@ if (!meeting) {
                 </section>
             </div>
 
-            <section class='flex p-8 gap-12'>
+            <section class='flex p-8'>
                 <div class='flex'>
                     <section class='flex flex-col gap-4'>
-                        <SelectMeeting client:load />
-                        <SelectTimeZone client:load />
                     </section>
                 </div>
 
-                <div class='flex flex-col gap-4 mt-11'>
-                    <div class='border rounded bg-white px-4 py-2'>
-                        <SelectMeetingTime avaliability={avaliability}  client:load /> 
-                    </div>
+                <div class='flex flex-col justify-between items-end gap-4 h-full'>
+                    <section class="flex gap-8">
+                        <div class="flex flex-col gap-4">
+                            <h2 class='text-lg font-medium'>Select a time and date</h2>
+                            <div>
+                                <SelectDate client:load />
+                                <SelectTimezone client:load />
+                            </div>
+                        </div>
+
+                        <div class="flex mt-11">
+                            <SelectTime client:load />
+                        </div>
+
+                    </section>
+                    <button disabled class='border rounded-lg bg-purple-600 disabled:bg-purple-200 text-white font-medium px-4 py-2 w-36 flex justify-center'>
+                        Continue
+                    </button>
                 </div>
             </section>
         </article>

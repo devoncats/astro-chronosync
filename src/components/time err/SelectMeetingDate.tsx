@@ -9,6 +9,7 @@ export default function SelectMeeting() {
     const userTimezone = useStore(timezone)
     const userDate = useStore(date)
     const base = today(userTimezone)
+    
     useEffect(() => {
         setDate(today(userTimezone))
     }, [userTimezone])

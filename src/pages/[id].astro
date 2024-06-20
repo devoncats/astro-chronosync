@@ -14,7 +14,7 @@ if (res.status === 404) {
 const data: User = await res.json()
 
 const { name, greeting, meetings } = data
-const userId: string = data.id
+const userId = data.id
 ---
 
 <Layout title={`Chronosync - ${name}`}>

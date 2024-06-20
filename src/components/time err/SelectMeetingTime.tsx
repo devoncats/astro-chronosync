@@ -4,7 +4,7 @@ import { date, timezone } from '@/stores/dateStore'
 export default function SelectMeetingTime({
     avaliability,
 }: {
-    avaliability: Avaliability[]
+    avaliability: Availability[]
 }) {
     const userDate = useStore(date)
     const userTimezone = useStore(timezone)
@@ -12,10 +12,10 @@ export default function SelectMeetingTime({
     const dayAvaliability = avaliability.filter(
         (hours) => hours.day === userDate.toString()
     )
+    
+    const hourAvaliability = dayAvaliability.map((hours) => hours.hours)
 
-    // const hourAvaliability = dayAvaliability.map((hours) => hours.hours)
-
-    // console.log(hourAvaliability)
+    console.log(hourAvaliability)
 
     return (
         <>
