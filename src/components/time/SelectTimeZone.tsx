@@ -9,17 +9,9 @@ export default function SelectTimeZone() {
     const timezones = tz
     const userTimezone = useStore(timezone)
 
-    const queryParams = new URLSearchParams(window.location.search)
-    queryParams.set('timezone', userTimezone)
-    window.history.replaceState(null, '', `${window.location.pathname}?${queryParams.toString()}`)
-
     const handleSelectionChange = (event: any) => {
         const newTimezone = event.values().next().value
         setTimezone(newTimezone)
-        
-        const queryParams = new URLSearchParams(window.location.search)
-        queryParams.set('timezone', newTimezone)
-        window.history.replaceState(null, '', `${window.location.pathname}?${queryParams.toString()}`)
     }
 
     return (

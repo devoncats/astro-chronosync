@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro'
 
 import { Image } from 'astro:assets'
 
-import SelectMeetingDate from '@/components/time/SelectMeetingDate'
+import SelectMeeting from '@/components/time/SelectMeetingDate'
 import SelectTimeZone from '@/components/time/SelectTimeZone'
 
 import CaretRightIcon from '@/icons/caret-right.astro'
@@ -81,14 +81,14 @@ if (!meeting) {
             <section class='flex p-8 gap-12'>
                 <div class='flex'>
                     <section class='flex flex-col gap-4'>
-                        <SelectMeetingDate availability={availability} client:only="react" />
-                        <SelectTimeZone client:only="react" />
+                        <SelectMeeting client:load />
+                        <SelectTimeZone client:load />
                     </section>
                 </div>
 
                 <div class='flex flex-col gap-4 mt-11'>
-                    <div class='border rounded-lg bg-white px-4 py-2 w-80'>
-                        <SelectMeetingTime availability={availability} client:only="react" /> 
+                    <div class='border rounded bg-white px-4 py-2'>
+                        <SelectMeetingTime avaliability={avaliability}  client:load /> 
                     </div>
                 </div>
             </section>
