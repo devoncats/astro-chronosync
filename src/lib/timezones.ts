@@ -7,7 +7,11 @@ export const tz: TimezoneRegion[] = [
                 id: 'Pacific/Midway',
                 name: 'Pacific/Midway',
             },
-            { offset: 'GMT-10:00', id: 'America/Adak', name: 'America/Adak' },
+            {
+                offset: 'GMT-10:00',
+                id: 'America/Adak',
+                name: 'America/Adak',
+            },
             {
                 offset: 'GMT-09:00',
                 id: 'America/Anchorage',
@@ -173,10 +177,26 @@ export const tz: TimezoneRegion[] = [
     {
         region: 'europe',
         timezones: [
-            { offset: 'GMT', id: 'Europe/Belfast', name: 'Europe/Belfast' },
-            { offset: 'GMT', id: 'Europe/Dublin', name: 'Europe/Dublin' },
-            { offset: 'GMT', id: 'Europe/Lisbon', name: 'Europe/Lisbon' },
-            { offset: 'GMT', id: 'Europe/London', name: 'Europe/London' },
+            {
+                offset: 'GMT',
+                id: 'Europe/Belfast',
+                name: 'Europe/Belfast',
+            },
+            {
+                offset: 'GMT',
+                id: 'Europe/Dublin',
+                name: 'Europe/Dublin',
+            },
+            {
+                offset: 'GMT',
+                id: 'Europe/Lisbon',
+                name: 'Europe/Lisbon',
+            },
+            {
+                offset: 'GMT',
+                id: 'Europe/London',
+                name: 'Europe/London',
+            },
             {
                 offset: 'GMT+01:00',
                 id: 'Europe/Amsterdam',
@@ -197,7 +217,11 @@ export const tz: TimezoneRegion[] = [
     {
         region: 'africa',
         timezones: [
-            { offset: 'GMT', id: 'Africa/Abidjan', name: 'Africa/Abidjan' },
+            {
+                offset: 'GMT',
+                id: 'Africa/Abidjan',
+                name: 'Africa/Abidjan',
+            },
             {
                 offset: 'GMT+01:00',
                 id: 'Africa/Algiers',
@@ -208,7 +232,11 @@ export const tz: TimezoneRegion[] = [
                 id: 'Africa/Windhoek',
                 name: 'Africa/Windhoek',
             },
-            { offset: 'GMT+02:00', id: 'Africa/Cairo', name: 'Africa/Cairo' },
+            {
+                offset: 'GMT+02:00',
+                id: 'Africa/Cairo',
+                name: 'Africa/Cairo',
+            },
             {
                 offset: 'GMT+02:00',
                 id: 'Africa/Blantyre',
@@ -224,25 +252,81 @@ export const tz: TimezoneRegion[] = [
     {
         region: 'asia',
         timezones: [
-            { offset: 'GMT+02:00', id: 'Asia/Beirut', name: 'Asia/Beirut' },
-            { offset: 'GMT+02:00', id: 'Asia/Damascus', name: 'Asia/Damascus' },
-            { offset: 'GMT+02:00', id: 'Asia/Gaza', name: 'Asia/Gaza' },
+            {
+                offset: 'GMT+02:00',
+                id: 'Asia/Beirut',
+                name: 'Asia/Beirut',
+            },
+            {
+                offset: 'GMT+02:00',
+                id: 'Asia/Damascus',
+                name: 'Asia/Damascus',
+            },
+            {
+                offset: 'GMT+02:00',
+                id: 'Asia/Gaza',
+                name: 'Asia/Gaza',
+            },
             {
                 offset: 'GMT+02:00',
                 id: 'Asia/Jerusalem',
                 name: 'Asia/Jerusalem',
             },
-            { offset: 'GMT+03:00', id: 'Asia/Riyadh89', name: 'Asia/Riyadh89' },
-            { offset: 'GMT+03:30', id: 'Asia/Tehran', name: 'Asia/Tehran' },
-            { offset: 'GMT+04:00', id: 'Asia/Dubai', name: 'Asia/Dubai' },
-            { offset: 'GMT+04:00', id: 'Asia/Yerevan', name: 'Asia/Yerevan' },
-            { offset: 'GMT+04:30', id: 'Asia/Kabul', name: 'Asia/Kabul' },
-            { offset: 'GMT+05:00', id: 'Asia/Tashkent', name: 'Asia/Tashkent' },
-            { offset: 'GMT+05:30', id: 'Asia/Kolkata', name: 'Asia/Kolkata' },
-            { offset: 'GMT+05:45', id: 'Asia/Katmandu', name: 'Asia/Katmandu' },
-            { offset: 'GMT+06:00', id: 'Asia/Dhaka', name: 'Asia/Dhaka' },
-            { offset: 'GMT+06:30', id: 'Asia/Rangoon', name: 'Asia/Rangoon' },
-            { offset: 'GMT+07:00', id: 'Asia/Bangkok', name: 'Asia/Bangkok' },
+            {
+                offset: 'GMT+03:00',
+                id: 'Asia/Riyadh89',
+                name: 'Asia/Riyadh89',
+            },
+            {
+                offset: 'GMT+03:30',
+                id: 'Asia/Tehran',
+                name: 'Asia/Tehran',
+            },
+            {
+                offset: 'GMT+04:00',
+                id: 'Asia/Dubai',
+                name: 'Asia/Dubai',
+            },
+            {
+                offset: 'GMT+04:00',
+                id: 'Asia/Yerevan',
+                name: 'Asia/Yerevan',
+            },
+            {
+                offset: 'GMT+04:30',
+                id: 'Asia/Kabul',
+                name: 'Asia/Kabul',
+            },
+            {
+                offset: 'GMT+05:00',
+                id: 'Asia/Tashkent',
+                name: 'Asia/Tashkent',
+            },
+            {
+                offset: 'GMT+05:30',
+                id: 'Asia/Kolkata',
+                name: 'Asia/Kolkata',
+            },
+            {
+                offset: 'GMT+05:45',
+                id: 'Asia/Katmandu',
+                name: 'Asia/Katmandu',
+            },
+            {
+                offset: 'GMT+06:00',
+                id: 'Asia/Dhaka',
+                name: 'Asia/Dhaka',
+            },
+            {
+                offset: 'GMT+06:30',
+                id: 'Asia/Rangoon',
+                name: 'Asia/Rangoon',
+            },
+            {
+                offset: 'GMT+07:00',
+                id: 'Asia/Bangkok',
+                name: 'Asia/Bangkok',
+            },
             {
                 offset: 'GMT+07:00',
                 id: 'Asia/Novosibirsk',
@@ -258,17 +342,41 @@ export const tz: TimezoneRegion[] = [
                 id: 'Asia/Krasnoyarsk',
                 name: 'Asia/Krasnoyarsk',
             },
-            { offset: 'GMT+09:00', id: 'Asia/Irkutsk', name: 'Asia/Irkutsk' },
-            { offset: 'GMT+09:00', id: 'Asia/Seoul', name: 'Asia/Seoul' },
-            { offset: 'GMT+09:00', id: 'Asia/Tokyo', name: 'Asia/Tokyo' },
-            { offset: 'GMT+10:00', id: 'Asia/Yakutsk', name: 'Asia/Yakutsk' },
+            {
+                offset: 'GMT+09:00',
+                id: 'Asia/Irkutsk',
+                name: 'Asia/Irkutsk',
+            },
+            {
+                offset: 'GMT+09:00',
+                id: 'Asia/Seoul',
+                name: 'Asia/Seoul',
+            },
+            {
+                offset: 'GMT+09:00',
+                id: 'Asia/Tokyo',
+                name: 'Asia/Tokyo',
+            },
+            {
+                offset: 'GMT+10:00',
+                id: 'Asia/Yakutsk',
+                name: 'Asia/Yakutsk',
+            },
             {
                 offset: 'GMT+11:00',
                 id: 'Asia/Vladivostok',
                 name: 'Asia/Vladivostok',
             },
-            { offset: 'GMT+12:00', id: 'Asia/Anadyr', name: 'Asia/Anadyr' },
-            { offset: 'GMT+12:00', id: 'Asia/Magadan', name: 'Asia/Magadan' },
+            {
+                offset: 'GMT+12:00',
+                id: 'Asia/Anadyr',
+                name: 'Asia/Anadyr',
+            },
+            {
+                offset: 'GMT+12:00',
+                id: 'Asia/Magadan',
+                name: 'Asia/Magadan',
+            },
         ],
     },
     {
@@ -350,15 +458,5 @@ export const tz: TimezoneRegion[] = [
                 name: 'Pacific/Kiritimati',
             },
         ],
-    },
-    {
-        region: 'etc',
-        timezones: [
-            { offset: 'GMT-12:00', id: 'Etc/GMT-12', name: 'Etc/GMT-12' },
-            { offset: 'GMT-11:00', id: 'Etc/GMT-11', name: 'Etc/GMT-11' },
-            { offset: 'GMT+08:00', id: 'Etc/GMT+8', name: 'Etc/GMT+8' },
-            { offset: 'GMT+10:00', id: 'Etc/GMT+10', name: 'Etc/GMT+10' },
-            { offset: 'GMT+12:00', id: 'Etc/GMT+12', name: 'Etc/GMT+12' },
-        ],
-    },
+    }
 ]

@@ -27,7 +27,7 @@ export function SelectTimezone() {
                         key={timezone.region}
                         title={timezone.region}
                         className='uppercase'
-                        showDivider
+                        
                     >
                         {timezone.timezones.map((zone) => {
                             return (

@@ -14,7 +14,7 @@ export default function SelectMeetingTime({
     )
     
     const hourAvaliability = dayAvaliability.map((hours) => hours.hours)
-
+    
     console.log(hourAvaliability)
 
     return (
